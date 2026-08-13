@@ -99,7 +99,7 @@
       font-size: 21px;
     }
 
-    /* 时间 */
+    /* 四个时间 */
 
     .clocks {
       display: grid;
@@ -137,21 +137,35 @@
       font-size: 12px;
     }
 
-    /* 提醒 */
+    /* 时间和模块之间的分隔线 */
 
-    .notice {
-      margin: 18px 0 22px;
-      padding: 17px;
+    .soft-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
 
-      color: #53677a;
-
-      background: rgba(255, 255, 255, 0.68);
-      border: 1px solid #d7e9f7;
-      border-radius: 20px;
+      margin: 28px 6px 26px;
     }
 
-    .notice strong {
+    .soft-divider::before,
+    .soft-divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(120, 159, 194, 0.60),
+          rgba(217, 137, 156, 0.60),
+          transparent
+        );
+    }
+
+    .divider-flower {
       color: #d9899c;
+      font-size: 15px;
     }
 
     /* 八个模块 */
@@ -254,7 +268,7 @@
       justify-content: space-between;
       align-items: center;
 
-      margin: 25px 3px 13px;
+      margin: 27px 3px 13px;
     }
 
     .section-title h2 {
@@ -348,6 +362,8 @@
       font-weight: 700;
     }
 
+    /* 小屏幕适配 */
+
     @media (max-width: 380px) {
       .hero h1 {
         font-size: 30px;
@@ -377,6 +393,8 @@
 <body>
 
   <main class="app">
+
+    <!-- 顶部标题 -->
 
     <section class="hero">
 
@@ -426,6 +444,12 @@
       </div>
 
     </section>
+
+    <!-- 淡粉蓝分隔线 -->
+
+    <div class="soft-divider">
+      <span class="divider-flower">🌺</span>
+    </div>
 
     <!-- 八个模块 -->
 
@@ -503,7 +527,7 @@
 
   </main>
 
-  <!-- 底部四个按钮 -->
+  <!-- 底部导航 -->
 
   <nav class="bottom-nav">
 

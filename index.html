@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#ff6f91">
+
+<title>夏威夷之旅 🌺</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+               "PingFang SC", Arial, sans-serif;
+  background:
+    linear-gradient(180deg,#ff6f91 0,#ffad91 220px,#fff4f8 420px,#fff9fb 100%);
+  color: #292331;
+  min-height: 100vh;
+}
+
+.app {
+  max-width: 520px;
+  margin: auto;
+  padding: 35px 18px 120px;
+}
+
+/* 顶部 */
+
+.hero {
+  color: white;
+  padding: 20px 5px 35px;
+}
+
+.hero-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.hero h1 {
+  font-size: 34px;
+  margin: 0 0 8px;
+  font-weight: 800;
+}
+
+.dates {
+  font-size: 18px;
+  opacity: .95;
+}
+
+.countdown {
+  background: rgba(255,255,255,.18);
+  border: 1px solid rgba(255,255,255,.35);
+  backdrop-filter: blur(10px);
+  padding: 10px 14px;
+  border-radius: 22px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.countdown strong {
+  display: block;
+  font-size: 21px;
+}
+
+/* 时钟 */
+
+.clocks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: -10px;
+}
+
+.clock-card {
+  background: rgba(255,255,255,.92);
+  border-radius: 22px;
+  padding: 17px 14px;
+  box-shadow: 0 10px 30px rgba(130,60,90,.08);
+}
+
+.clock-city {
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.clock-time {
+  color: #f63b7c;
+  font-size: 25px;
+  font-weight: 800;
+  margin: 10px 0 5px;
+}
+
+.clock-date {
+  font-size: 12px;
+  color: #77717c;
+}
+
+/* 提醒 */
+
+.notice {
+  margin: 18px 0 26px;
+  background: rgba(255,255,255,.7);
+  border: 1px solid #ffd1df;
+  padding: 17px;
+  border-radius: 20px;
+}
+
+.notice strong {
+  color: #f53675;
+}
+
+/* 标题 */
+
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 22px 3px 13px;
+}
+
+.section-title h2 {
+  font-size: 21px;
+  margin: 0;
+}
+
+.section-title span {
+  color: #8c858c;
+  font-size: 14px;
+}
+
+/* 模块 */
+
+.modules {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 10px;
+}
+
+.module {
+  position: relative;
+  background: white;
+  border-radius: 21px;
+  padding: 14px 5px 13px;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(100,60,80,.06);
+}
+
+.icon {
+  width: 52px;
+  height: 52px;
+  margin: auto auto 9px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+}
+
+.pink { background:#ffdfeb; }
+.green { background:#dff8e6; }
+.orange { background:#fff0d1; }
+.blue { background:#deefff; }
+.purple { background:#eee3ff; }
+.sky { background:#dff4ff; }
+.rose { background:#ffe1ed; }
+.cream { background:#f7eee5; }
+
+.module-name {
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.badge {
+  position: absolute;
+  top: 7px;
+  right: 5px;
+  background: #ff3b4e;
+  color: white;
+  font-size: 10px;
+  padding: 4px 7px;
+  border-radius: 12px;
+}
+
+/* 旅行进度 */
+
+.progress-card {
+  margin-top: 22px;
+  background: white;
+  border-radius: 24px;
+  padding: 19px;
+  box-shadow: 0 8px 25px rgba(100,60,80,.06);
+}
+
+.progress-title {
+  color:#f53b7a;
+  font-weight: 750;
+  margin-bottom: 17px;
+}
+
+.progress-bar {
+  height: 6px;
+  border-radius: 5px;
+  background:#f5d6e2;
+  overflow:hidden;
+}
+
+.progress-fill {
+  width:70%;
+  height:100%;
+  background:#fa4c87;
+}
+
+.progress-text {
+  display:flex;
+  justify-content:space-between;
+  margin-top:10px;
+  font-size:12px;
+  color:#777;
+}
+
+/* 接下来 */
+
+.next-card {
+  background:white;
+  border-radius:24px;
+  padding:18px;
+  display:flex;
+  gap:15px;
+  align-items:center;
+  box-shadow:0 8px 25px rgba(100,60,80,.06);
+}
+
+.next-date {
+  color:#f53675;
+  font-weight:750;
+  width:75px;
+}
+
+.next-info {
+  flex:1;
+}
+
+.next-info h3 {
+  margin:0 0 8px;
+  font-size:18px;
+}
+
+.next-info p {
+  margin:5px 0;
+  font-size:14px;
+}
+
+/* 底部导航 */
+
+.bottom-nav {
+  position:fixed;
+  bottom:0;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(520px,100%);
+  background:rgba(255,255,255,.94);
+  backdrop-filter:blur(20px);
+  border-radius:25px 25px 0 0;
+  display:flex;
+  justify-content:space-around;
+  padding:12px 8px calc(12px + env(safe-area-inset-bottom));
+  box-shadow:0 -5px 25px rgba(70,40,60,.08);
+}
+
+.nav-item {
+  text-align:center;
+  font-size:11px;
+  color:#777;
+}
+
+.nav-icon {
+  font-size:23px;
+  margin-bottom:3px;
+}
+
+.active {
+  color:#f53675;
+  font-weight:700;
+}
+
+.add {
+  background:#f53675;
+  color:white;
+  width:49px;
+  height:49px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:30px;
+  margin-top:-20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <div class="hero">
+    <div class="hero-top">
+      <div>
+        <h1>夏威夷之旅 🌺</h1>
+        <div class="dates">8.24 – 9.3 · 11 天</div>
+      </div>
+
+      <div class="countdown">
+        ✈️
+        <strong id="daysLeft">11</strong>
+        天后出发
+      </div>
+    </div>
+  </div>
+
+  <!-- 四个实时当地时间 -->
+
+  <div class="clocks">
+
+    <div class="clock-card">
+      <div class="clock-city">🌴 Honolulu</div>
+      <div class="clock-time" id="honoluluTime">--:--</div>
+      <div class="clock-date" id="honoluluDate"></div>
+    </div>
+
+    <div class="clock-card">
+      <div class="clock-city">🌋 Big Island</div>
+      <div class="clock-time" id="bigIslandTime">--:--</div>
+      <div class="clock-date" id="bigIslandDate"></div>
+    </div>
+
+    <div class="clock-card">
+      <div class="clock-city">🗽 New York</div>
+      <div class="clock-time" id="newYorkTime">--:--</div>
+      <div class="clock-date" id="newYorkDate"></div>
+    </div>
+
+    <div class="clock-card">
+      <div class="clock-city">🌲 Seattle</div>
+      <div class="clock-time" id="seattleTime">--:--</div>
+      <div class="clock-date" id="seattleDate"></div>
+    </div>
+
+  </div>
+
+  <div class="notice">
+    📣 旅行清单还有 <strong>23 项</strong>未完成，去看看吧 →
+  </div>
+
+  <div class="section-title">
+    <h2>我的模块</h2>
+    <span>自定义 ✎</span>
+  </div>
+
+  <div class="modules">
+
+    <div class="module">
+      <span class="badge">16/16</span>
+      <div class="icon pink">🗺️</div>
+      <div class="module-name">行程</div>
+    </div>
+
+    <div class="module">
+      <span class="badge">8/60</span>
+      <div class="icon green">✅</div>
+      <div class="module-name">清单</div>
+    </div>
+
+    <div class="module">
+      <span class="badge">$1,248</span>
+      <div class="icon orange">👛</div>
+      <div class="module-name">记账</div>
+    </div>
+
+    <div class="module">
+      <span class="badge">12</span>
+      <div class="icon blue">✈️</div>
+      <div class="module-name">机酒</div>
+    </div>
+
+    <div class="module">
+      <div class="icon purple">📖</div>
+      <div class="module-name">攻略</div>
+    </div>
+
+    <div class="module">
+      <span class="badge">☀️</span>
+      <div class="icon sky">🌤️</div>
+      <div class="module-name">天气</div>
+    </div>
+
+    <div class="module">
+      <div class="icon rose">📷</div>
+      <div class="module-name">相册</div>
+    </div>
+
+    <div class="module">
+      <span class="badge">5</span>
+      <div class="icon cream">📄</div>
+      <div class="module-name">文档</div>
+    </div>
+
+  </div>
+
+  <div class="progress-card">
+    <div class="progress-title">🚩 旅行进度</div>
+
+    <div class="progress-bar">
+      <div class="progress-fill"></div>
+    </div>
+
+    <div class="progress-text">
+      <span>✈️ 机票 ✓</span>
+      <span>🏨 酒店 6/6</span>
+      <span>🚙 租车 2/2</span>
+      <span>🎟️ 活动 5/8</span>
+    </div>
+  </div>
+
+  <div class="section-title">
+    <h2>接下来</h2>
+    <span>查看全部 ›</span>
+  </div>
+
+  <div class="next-card">
+
+    <div class="next-date">
+      8月24日<br>
+      周一
+    </div>
+
+    <div class="next-info">
+      <h3>抵达 Honolulu (Oahu) 🌴</h3>
+      <p>✈️ 16:00 到达 HNL</p>
+      <p>🏨 入住 Sheraton Waikiki</p>
+    </div>
+
+  </div>
+
+</div>
+
+<div class="bottom-nav">
+
+  <div class="nav-item active">
+    <div class="nav-icon">🏠</div>
+    首页
+  </div>
+
+  <div class="nav-item">
+    <div class="nav-icon">👛</div>
+    记账
+  </div>
+
+  <div class="add">＋</div>
+
+  <div class="nav-item">
+    <div class="nav-icon">🗺️</div>
+    行程
+  </div>
+
+  <div class="nav-item">
+    <div class="nav-icon">⚙️</div>
+    设置
+  </div>
+
+</div>
+
+<script>
+
+function updateClock(timeZone,timeID,dateID){
+
+  const now = new Date();
+
+  document.getElementById(timeID).textContent =
+    new Intl.DateTimeFormat("en-US",{
+      timeZone:timeZone,
+      hour:"numeric",
+      minute:"2-digit",
+      hour12:true
+    }).format(now);
+
+  document.getElementById(dateID).textContent =
+    new Intl.DateTimeFormat("zh-CN",{
+      timeZone:timeZone,
+      month:"long",
+      day:"numeric",
+      weekday:"short"
+    }).format(now);
+}
+
+function updateAllClocks(){
+
+  updateClock(
+    "Pacific/Honolulu",
+    "honoluluTime",
+    "honoluluDate"
+  );
+
+  updateClock(
+    "Pacific/Honolulu",
+    "bigIslandTime",
+    "bigIslandDate"
+  );
+
+  updateClock(
+    "America/New_York",
+    "newYorkTime",
+    "newYorkDate"
+  );
+
+  updateClock(
+    "America/Los_Angeles",
+    "seattleTime",
+    "seattleDate"
+  );
+
+}
+
+updateAllClocks();
+setInterval(updateAllClocks,1000);
+
+</script>
+
+</body>
+</html>

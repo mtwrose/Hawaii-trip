@@ -1,634 +1,596 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="theme-color" content="#ff6f91">
-
-<title>夏威夷之旅 🌺</title>
-
-  /* ===== 淡粉蓝主题 ===== */
-
-body {
-  background:
-    linear-gradient(
-      180deg,
-      #b9dff5 0px,
-      #d8eafa 190px,
-      #f8e7ef 390px,
-      #f7fafd 100%
-    );
-  color: #34445a;
-}
-
-.hero {
-  color: #34445a;
-}
-
-.dates {
-  color: #60758b;
-}
-
-.countdown {
-  background: rgba(255,255,255,.55);
-  border-color: rgba(255,255,255,.8);
-  color: #526b82;
-  box-shadow: 0 8px 25px rgba(91,139,174,.10);
-}
-
-.clock-card,
-.module,
-.progress-card,
-.next-card {
-  background: rgba(255,255,255,.88);
-  box-shadow: 0 10px 28px rgba(91,139,174,.09);
-}
-
-.clock-time {
-  color: #6f9fc3;
-}
-
-.notice {
-  background: rgba(255,255,255,.68);
-  border-color: #d7e9f7;
-}
-
-.notice strong,
-.progress-title,
-.next-date,
-.active {
-  color: #789fc2;
-}
-
-.badge {
-  background: #e99aaa;
-}
-
-.progress-bar {
-  background: #dcebf5;
-}
-
-.progress-fill {
-  background: linear-gradient(90deg, #91bfdc, #e7a5b4);
-}
-
-.add {
-  background: linear-gradient(135deg, #8fbdda, #e8a3b3);
-  box-shadow: 0 6px 18px rgba(111,159,195,.25);
-}
-
-.bottom-nav {
-  background: rgba(250,252,255,.94);
-  box-shadow: 0 -5px 25px rgba(91,139,174,.09);
-}
-
-.pink,
-.rose {
-  background: #f7dce5;
-}
-
-.blue,
-.sky {
-  background: #dceefa;
-}
-
-.green {
-  background: #e2f3ed;
-}
-
-.orange,
-.cream {
-  background: #faeadb;
-}
-
-.purple {
-  background: #e9e4f7;
-}
-<style>
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
-               "PingFang SC", Arial, sans-serif;
-  background:
-    linear-gradient(180deg,#ff6f91 0,#ffad91 220px,#fff4f8 420px,#fff9fb 100%);
-  color: #292331;
-  min-height: 100vh;
-}
-
-.app {
-  max-width: 520px;
-  margin: auto;
-  padding: 35px 18px 120px;
-}
-
-/* 顶部 */
-
-.hero {
-  color: white;
-  padding: 20px 5px 35px;
-}
-
-.hero-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
-.hero h1 {
-  font-size: 34px;
-  margin: 0 0 8px;
-  font-weight: 800;
-}
-
-.dates {
-  font-size: 18px;
-  opacity: .95;
-}
-
-.countdown {
-  background: rgba(255,255,255,.18);
-  border: 1px solid rgba(255,255,255,.35);
-  backdrop-filter: blur(10px);
-  padding: 10px 14px;
-  border-radius: 22px;
-  text-align: center;
-  font-size: 14px;
-}
-
-.countdown strong {
-  display: block;
-  font-size: 21px;
-}
-
-/* 时钟 */
-
-.clocks {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-  margin-top: -10px;
-}
-
-.clock-card {
-  background: rgba(255,255,255,.92);
-  border-radius: 22px;
-  padding: 17px 14px;
-  box-shadow: 0 10px 30px rgba(130,60,90,.08);
-}
-
-.clock-city {
-  font-size: 14px;
-  font-weight: 650;
-}
-
-.clock-time {
-  color: #f63b7c;
-  font-size: 25px;
-  font-weight: 800;
-  margin: 10px 0 5px;
-}
-
-.clock-date {
-  font-size: 12px;
-  color: #77717c;
-}
-
-/* 提醒 */
-
-.notice {
-  margin: 18px 0 26px;
-  background: rgba(255,255,255,.7);
-  border: 1px solid #ffd1df;
-  padding: 17px;
-  border-radius: 20px;
-}
-
-.notice strong {
-  color: #f53675;
-}
-
-/* 标题 */
-
-.section-title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 22px 3px 13px;
-}
-
-.section-title h2 {
-  font-size: 21px;
-  margin: 0;
-}
-
-.section-title span {
-  color: #8c858c;
-  font-size: 14px;
-}
-
-/* 模块 */
-
-.modules {
-  display: grid;
-  grid-template-columns: repeat(4,1fr);
-  gap: 10px;
-}
-
-.module {
-  position: relative;
-  background: white;
-  border-radius: 21px;
-  padding: 14px 5px 13px;
-  text-align: center;
-  box-shadow: 0 8px 25px rgba(100,60,80,.06);
-}
-
-.icon {
-  width: 52px;
-  height: 52px;
-  margin: auto auto 9px;
-  border-radius: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-}
-
-.pink { background:#ffdfeb; }
-.green { background:#dff8e6; }
-.orange { background:#fff0d1; }
-.blue { background:#deefff; }
-.purple { background:#eee3ff; }
-.sky { background:#dff4ff; }
-.rose { background:#ffe1ed; }
-.cream { background:#f7eee5; }
-
-.module-name {
-  font-size: 14px;
-  font-weight: 650;
-}
-
-.badge {
-  position: absolute;
-  top: 7px;
-  right: 5px;
-  background: #ff3b4e;
-  color: white;
-  font-size: 10px;
-  padding: 4px 7px;
-  border-radius: 12px;
-}
-
-/* 旅行进度 */
-
-.progress-card {
-  margin-top: 22px;
-  background: white;
-  border-radius: 24px;
-  padding: 19px;
-  box-shadow: 0 8px 25px rgba(100,60,80,.06);
-}
-
-.progress-title {
-  color:#f53b7a;
-  font-weight: 750;
-  margin-bottom: 17px;
-}
-
-.progress-bar {
-  height: 6px;
-  border-radius: 5px;
-  background:#f5d6e2;
-  overflow:hidden;
-}
-
-.progress-fill {
-  width:70%;
-  height:100%;
-  background:#fa4c87;
-}
-
-.progress-text {
-  display:flex;
-  justify-content:space-between;
-  margin-top:10px;
-  font-size:12px;
-  color:#777;
-}
-
-/* 接下来 */
-
-.next-card {
-  background:white;
-  border-radius:24px;
-  padding:18px;
-  display:flex;
-  gap:15px;
-  align-items:center;
-  box-shadow:0 8px 25px rgba(100,60,80,.06);
-}
-
-.next-date {
-  color:#f53675;
-  font-weight:750;
-  width:75px;
-}
-
-.next-info {
-  flex:1;
-}
-
-.next-info h3 {
-  margin:0 0 8px;
-  font-size:18px;
-}
-
-.next-info p {
-  margin:5px 0;
-  font-size:14px;
-}
-
-/* 底部导航 */
-
-.bottom-nav {
-  position:fixed;
-  bottom:0;
-  left:50%;
-  transform:translateX(-50%);
-  width:min(520px,100%);
-  background:rgba(255,255,255,.94);
-  backdrop-filter:blur(20px);
-  border-radius:25px 25px 0 0;
-  display:flex;
-  justify-content:space-around;
-  padding:12px 8px calc(12px + env(safe-area-inset-bottom));
-  box-shadow:0 -5px 25px rgba(70,40,60,.08);
-}
-
-.nav-item {
-  text-align:center;
-  font-size:11px;
-  color:#777;
-}
-
-.nav-icon {
-  font-size:23px;
-  margin-bottom:3px;
-}
-
-.active {
-  color:#f53675;
-  font-weight:700;
-}
-
-.add {
-  background:#f53675;
-  color:white;
-  width:49px;
-  height:49px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:30px;
-  margin-top:-20px;
-}
-
-</style>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
+
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#b9dff5">
+
+  <title>夏威夷之旅 🌺</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "PingFang SC",
+        Arial,
+        sans-serif;
+
+      color: #34445a;
+
+      background:
+        linear-gradient(
+          180deg,
+          #b9dff5 0,
+          #d9ebf8 190px,
+          #f8e8ef 390px,
+          #f8fbfd 100%
+        );
+    }
+
+    .app {
+      max-width: 520px;
+      margin: auto;
+      padding: 35px 18px 120px;
+    }
+
+    /* 顶部 */
+
+    .hero {
+      padding: 20px 5px 35px;
+    }
+
+    .hero-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .hero h1 {
+      margin: 0 0 8px;
+      font-size: 34px;
+      line-height: 1.15;
+      font-weight: 800;
+    }
+
+    .dates {
+      color: #60758b;
+      font-size: 18px;
+    }
+
+    .countdown {
+      min-width: 92px;
+      flex-shrink: 0;
+      padding: 10px 14px;
+
+      color: #526b82;
+      font-size: 14px;
+      text-align: center;
+
+      background: rgba(255, 255, 255, 0.52);
+      border: 1px solid rgba(255, 255, 255, 0.82);
+      border-radius: 22px;
+
+      box-shadow: 0 8px 25px rgba(91, 139, 174, 0.10);
+
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .countdown strong {
+      display: block;
+      font-size: 21px;
+    }
+
+    /* 时间 */
+
+    .clocks {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: -10px;
+    }
+
+    .clock-card {
+      padding: 17px 14px;
+
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      border-radius: 22px;
+
+      box-shadow: 0 10px 28px rgba(91, 139, 174, 0.09);
+    }
+
+    .clock-city {
+      color: #3f5368;
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .clock-time {
+      margin: 10px 0 5px;
+
+      color: #6f9fc3;
+      font-size: 25px;
+      font-weight: 800;
+    }
+
+    .clock-date {
+      color: #7a8794;
+      font-size: 12px;
+    }
+
+    /* 提醒 */
+
+    .notice {
+      margin: 18px 0 22px;
+      padding: 17px;
+
+      color: #53677a;
+
+      background: rgba(255, 255, 255, 0.68);
+      border: 1px solid #d7e9f7;
+      border-radius: 20px;
+    }
+
+    .notice strong {
+      color: #d9899c;
+    }
+
+    /* 八个模块 */
+
+    .modules {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .module {
+      position: relative;
+      padding: 14px 4px 13px;
+
+      color: inherit;
+      text-decoration: none;
+      text-align: center;
+
+      background: rgba(255, 255, 255, 0.90);
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      border-radius: 21px;
+
+      box-shadow: 0 8px 25px rgba(91, 139, 174, 0.08);
+    }
+
+    .module:active {
+      transform: scale(0.97);
+    }
+
+    .icon {
+      width: 52px;
+      height: 52px;
+      margin: auto auto 9px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 16px;
+      font-size: 28px;
+    }
+
+    .pink {
+      background: #f7dce5;
+    }
+
+    .green {
+      background: #e2f3ed;
+    }
+
+    .orange {
+      background: #faeadb;
+    }
+
+    .blue {
+      background: #dceefa;
+    }
+
+    .purple {
+      background: #e9e4f7;
+    }
+
+    .sky {
+      background: #dff1f8;
+    }
+
+    .cream {
+      background: #f7eee5;
+    }
+
+    .rose {
+      background: #f7e0e7;
+    }
+
+    .module-name {
+      color: #43566a;
+      font-size: 13px;
+      font-weight: 650;
+      white-space: nowrap;
+    }
+
+    .badge {
+      position: absolute;
+      top: 7px;
+      right: 5px;
+
+      padding: 4px 7px;
+
+      color: white;
+      font-size: 10px;
+
+      background: #e99aaa;
+      border-radius: 12px;
+    }
+
+    /* 接下来 */
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      margin: 25px 3px 13px;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 21px;
+    }
+
+    .section-title span {
+      color: #8190a0;
+      font-size: 14px;
+    }
+
+    .next-card {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+
+      padding: 18px;
+
+      background: rgba(255, 255, 255, 0.90);
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      border-radius: 24px;
+
+      box-shadow: 0 8px 25px rgba(91, 139, 174, 0.08);
+    }
+
+    .next-date {
+      width: 75px;
+      flex-shrink: 0;
+
+      color: #d9899c;
+      font-weight: 750;
+    }
+
+    .next-info {
+      flex: 1;
+    }
+
+    .next-info h3 {
+      margin: 0 0 8px;
+      color: #3c5065;
+      font-size: 18px;
+    }
+
+    .next-info p {
+      margin: 5px 0;
+      color: #5f7080;
+      font-size: 14px;
+    }
+
+    /* 底部导航 */
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+
+      width: min(520px, 100%);
+
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+
+      padding:
+        12px
+        8px
+        calc(12px + env(safe-area-inset-bottom));
+
+      background: rgba(250, 252, 255, 0.94);
+      border-radius: 25px 25px 0 0;
+
+      box-shadow: 0 -5px 25px rgba(91, 139, 174, 0.09);
+
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .nav-item {
+      color: #7b8794;
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .nav-icon {
+      margin-bottom: 3px;
+      font-size: 23px;
+    }
+
+    .nav-item.active {
+      color: #789fc2;
+      font-weight: 700;
+    }
+
+    @media (max-width: 380px) {
+      .hero h1 {
+        font-size: 30px;
+      }
+
+      .modules {
+        gap: 7px;
+      }
+
+      .module {
+        padding-left: 2px;
+        padding-right: 2px;
+      }
+
+      .icon {
+        width: 48px;
+        height: 48px;
+      }
+
+      .module-name {
+        font-size: 12px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="app">
+  <main class="app">
 
-  <div class="hero">
-    <div class="hero-top">
-      <div>
-        <h1>夏威夷之旅 🌺</h1>
-        <div class="dates">8.24 – 9.3 · 11 天</div>
+    <section class="hero">
+
+      <div class="hero-top">
+
+        <div>
+          <h1>夏威夷之旅 🌺</h1>
+          <div class="dates">8.24 – 9.3 · 11 天</div>
+        </div>
+
+        <div class="countdown">
+          ✈️
+          <strong id="daysLeft">11</strong>
+          天后出发
+        </div>
+
       </div>
 
-      <div class="countdown">
-        ✈️
-        <strong id="daysLeft">11</strong>
-        天后出发
+    </section>
+
+    <!-- 四个当地时间 -->
+
+    <section class="clocks">
+
+      <div class="clock-card">
+        <div class="clock-city">🌴 Honolulu</div>
+        <div class="clock-time" id="honoluluTime">--:--</div>
+        <div class="clock-date" id="honoluluDate"></div>
       </div>
-    </div>
-  </div>
 
-  <!-- 四个实时当地时间 -->
+      <div class="clock-card">
+        <div class="clock-city">🌋 Big Island</div>
+        <div class="clock-time" id="bigIslandTime">--:--</div>
+        <div class="clock-date" id="bigIslandDate"></div>
+      </div>
 
-  <div class="clocks">
+      <div class="clock-card">
+        <div class="clock-city">🗽 New York</div>
+        <div class="clock-time" id="newYorkTime">--:--</div>
+        <div class="clock-date" id="newYorkDate"></div>
+      </div>
 
-    <div class="clock-card">
-      <div class="clock-city">🌴 Honolulu</div>
-      <div class="clock-time" id="honoluluTime">--:--</div>
-      <div class="clock-date" id="honoluluDate"></div>
-    </div>
+      <div class="clock-card">
+        <div class="clock-city">🌲 Seattle</div>
+        <div class="clock-time" id="seattleTime">--:--</div>
+        <div class="clock-date" id="seattleDate"></div>
+      </div>
 
-    <div class="clock-card">
-      <div class="clock-city">🌋 Big Island</div>
-      <div class="clock-time" id="bigIslandTime">--:--</div>
-      <div class="clock-date" id="bigIslandDate"></div>
-    </div>
+    </section>
 
-    <div class="clock-card">
-      <div class="clock-city">🗽 New York</div>
-      <div class="clock-time" id="newYorkTime">--:--</div>
-      <div class="clock-date" id="newYorkDate"></div>
-    </div>
-
-    <div class="clock-card">
-      <div class="clock-city">🌲 Seattle</div>
-      <div class="clock-time" id="seattleTime">--:--</div>
-      <div class="clock-date" id="seattleDate"></div>
+    <div class="notice">
+      📣 旅行清单还有
+      <strong>23 项</strong>
+      未完成，去看看吧 →
     </div>
 
-  </div>
+    <!-- 八个模块 -->
 
-  <div class="notice">
-    📣 旅行清单还有 <strong>23 项</strong>未完成，去看看吧 →
-  </div>
+    <section class="modules">
 
-  <div class="section-title">
-    <h2>我的模块</h2>
-    <span>自定义 ✎</span>
-  </div>
+      <div class="module">
+        <span class="badge">16</span>
+        <div class="icon pink">🗺️</div>
+        <div class="module-name">行程</div>
+      </div>
 
-  <div class="modules">
+      <div class="module">
+        <span class="badge">23</span>
+        <div class="icon green">✅</div>
+        <div class="module-name">清单</div>
+      </div>
 
-    <div class="module">
-      <span class="badge">16/16</span>
-      <div class="icon pink">🗺️</div>
-      <div class="module-name">行程</div>
+      <div class="module">
+        <span class="badge">$1,248</span>
+        <div class="icon orange">👛</div>
+        <div class="module-name">记账</div>
+      </div>
+
+      <div class="module">
+        <span class="badge">12</span>
+        <div class="icon blue">✈️</div>
+        <div class="module-name">机票酒店</div>
+      </div>
+
+      <div class="module">
+        <div class="icon purple">📖</div>
+        <div class="module-name">攻略</div>
+      </div>
+
+      <div class="module">
+        <span class="badge">☀️</span>
+        <div class="icon sky">🌤️</div>
+        <div class="module-name">天气</div>
+      </div>
+
+      <div class="module">
+        <div class="icon cream">🍽️</div>
+        <div class="module-name">餐厅</div>
+      </div>
+
+      <div class="module">
+        <span class="badge">5</span>
+        <div class="icon rose">🎟️</div>
+        <div class="module-name">活动预订</div>
+      </div>
+
+    </section>
+
+    <!-- 接下来 -->
+
+    <div class="section-title">
+      <h2>接下来</h2>
+      <span>查看全部 ›</span>
     </div>
 
-    <div class="module">
-      <span class="badge">8/60</span>
-      <div class="icon green">✅</div>
-      <div class="module-name">清单</div>
+    <section class="next-card">
+
+      <div class="next-date">
+        8月24日<br>
+        周一
+      </div>
+
+      <div class="next-info">
+        <h3>抵达 Honolulu 🌴</h3>
+        <p>✈️ 16:00 到达 HNL</p>
+        <p>🏨 入住 Sheraton Waikiki</p>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- 底部四个按钮 -->
+
+  <nav class="bottom-nav">
+
+    <div class="nav-item active">
+      <div class="nav-icon">🏠</div>
+      首页
     </div>
 
-    <div class="module">
-      <span class="badge">$1,248</span>
-      <div class="icon orange">👛</div>
-      <div class="module-name">记账</div>
+    <div class="nav-item">
+      <div class="nav-icon">🗺️</div>
+      行程
     </div>
 
-    <div class="module">
-      <span class="badge">12</span>
-      <div class="icon blue">✈️</div>
-      <div class="module-name">机酒</div>
+    <div class="nav-item">
+      <div class="nav-icon">👛</div>
+      记账
     </div>
 
-    <div class="module">
-      <div class="icon purple">📖</div>
-      <div class="module-name">攻略</div>
+    <div class="nav-item">
+      <div class="nav-icon">⚙️</div>
+      设置
     </div>
 
-    <div class="module">
-      <span class="badge">☀️</span>
-      <div class="icon sky">🌤️</div>
-      <div class="module-name">天气</div>
-    </div>
+  </nav>
 
-    <div class="module">
-      <div class="icon rose">📷</div>
-      <div class="module-name">相册</div>
-    </div>
+  <script>
+    function updateClock(timeZone, timeID, dateID) {
+      const now = new Date();
 
-    <div class="module">
-      <span class="badge">5</span>
-      <div class="icon cream">📄</div>
-      <div class="module-name">文档</div>
-    </div>
+      document.getElementById(timeID).textContent =
+        new Intl.DateTimeFormat(
+          "en-US",
+          {
+            timeZone: timeZone,
+            hour: "numeric",
+            minute: "2-digit",
+            hour12: true
+          }
+        ).format(now);
 
-  </div>
+      document.getElementById(dateID).textContent =
+        new Intl.DateTimeFormat(
+          "zh-CN",
+          {
+            timeZone: timeZone,
+            month: "long",
+            day: "numeric",
+            weekday: "short"
+          }
+        ).format(now);
+    }
 
-  <div class="progress-card">
-    <div class="progress-title">🚩 旅行进度</div>
+    function updateAllClocks() {
+      updateClock(
+        "Pacific/Honolulu",
+        "honoluluTime",
+        "honoluluDate"
+      );
 
-    <div class="progress-bar">
-      <div class="progress-fill"></div>
-    </div>
+      updateClock(
+        "Pacific/Honolulu",
+        "bigIslandTime",
+        "bigIslandDate"
+      );
 
-    <div class="progress-text">
-      <span>✈️ 机票 ✓</span>
-      <span>🏨 酒店 6/6</span>
-      <span>🚙 租车 2/2</span>
-      <span>🎟️ 活动 5/8</span>
-    </div>
-  </div>
+      updateClock(
+        "America/New_York",
+        "newYorkTime",
+        "newYorkDate"
+      );
 
-  <div class="section-title">
-    <h2>接下来</h2>
-    <span>查看全部 ›</span>
-  </div>
+      updateClock(
+        "America/Los_Angeles",
+        "seattleTime",
+        "seattleDate"
+      );
+    }
 
-  <div class="next-card">
-
-    <div class="next-date">
-      8月24日<br>
-      周一
-    </div>
-
-    <div class="next-info">
-      <h3>抵达 Honolulu (Oahu) 🌴</h3>
-      <p>✈️ 16:00 到达 HNL</p>
-      <p>🏨 入住 Sheraton Waikiki</p>
-    </div>
-
-  </div>
-
-</div>
-
-<div class="bottom-nav">
-
-  <div class="nav-item active">
-    <div class="nav-icon">🏠</div>
-    首页
-  </div>
-
-  <div class="nav-item">
-    <div class="nav-icon">👛</div>
-    记账
-  </div>
-
-  <div class="add">＋</div>
-
-  <div class="nav-item">
-    <div class="nav-icon">🗺️</div>
-    行程
-  </div>
-
-  <div class="nav-item">
-    <div class="nav-icon">⚙️</div>
-    设置
-  </div>
-
-</div>
-
-<script>
-
-function updateClock(timeZone,timeID,dateID){
-
-  const now = new Date();
-
-  document.getElementById(timeID).textContent =
-    new Intl.DateTimeFormat("en-US",{
-      timeZone:timeZone,
-      hour:"numeric",
-      minute:"2-digit",
-      hour12:true
-    }).format(now);
-
-  document.getElementById(dateID).textContent =
-    new Intl.DateTimeFormat("zh-CN",{
-      timeZone:timeZone,
-      month:"long",
-      day:"numeric",
-      weekday:"short"
-    }).format(now);
-}
-
-function updateAllClocks(){
-
-  updateClock(
-    "Pacific/Honolulu",
-    "honoluluTime",
-    "honoluluDate"
-  );
-
-  updateClock(
-    "Pacific/Honolulu",
-    "bigIslandTime",
-    "bigIslandDate"
-  );
-
-  updateClock(
-    "America/New_York",
-    "newYorkTime",
-    "newYorkDate"
-  );
-
-  updateClock(
-    "America/Los_Angeles",
-    "seattleTime",
-    "seattleDate"
-  );
-
-}
-
-updateAllClocks();
-setInterval(updateAllClocks,1000);
-
-</script>
+    updateAllClocks();
+    setInterval(updateAllClocks, 1000);
+  </script>
 
 </body>
 </html>
